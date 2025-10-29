@@ -164,11 +164,11 @@ resource "aws_security_group_rule" "eks_node_eks_control_plane" {
 }
 
 # eksnode to vpc
-resource "aws_security_group_rule" "eks_nodes_eks_nodes" {
+resource "aws_security_group_rule" "vpc_eks_nodes" {
   type              = "ingress"
   from_port         = 0
   to_port           = 0
   protocol          = "-1"
-  source_security_group_id = module.eks_node.sg_id
+  cidr_blocks       = ["10.0.0.0/16"]
   security_group_id = module.eks_node.sg_id
 }
