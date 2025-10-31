@@ -11,16 +11,6 @@ source = "git::https://github.com/Sameer-Sarrainodu/Terraform-Aws-Sg.git?ref=mai
     vpc_id = local.vpc_id
 }
 
-module "backend_alb" {
-
-source = "git::https://github.com/Sameer-Sarrainodu/Terraform-Aws-Sg.git?ref=main"
-    project = var.project
-    environment = var.environment
-
-    sg_name = "backend-alb"
-    sg_description = "for backend alb"
-    vpc_id = local.vpc_id
-}
 module "ingress_alb" {
 
 source = "git::https://github.com/Sameer-Sarrainodu/Terraform-Aws-Sg.git?ref=main"
