@@ -48,7 +48,7 @@ pipeline {
                     withAWS(credentials: 'aws-creds',region: 'us-east-1') {
                     sh """
                         cd 70-frontendalb
-                        teraform apply -auto-approve
+                        terraform apply -auto-approve
                     """
                     }
                 }
