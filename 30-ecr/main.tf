@@ -8,7 +8,7 @@ resource "aws_ecr_repository" "main" {
   force_delete = true
 }
 
-resource "aws_ecr_account_scanning_configuration" "basic" {
+resource "aws_ecr_registry_scanning_configuration" "basic" {
   scan_type = "BASIC"   # BASIC = standard ECR image scan (not Inspector v2)
 
   # Optional: enable automatic scan on push for *all* new repos
