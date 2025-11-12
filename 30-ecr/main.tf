@@ -8,18 +8,14 @@ resource "aws_ecr_repository" "main" {
   force_delete = true
 }
 
-resource "aws_ecr_registry_scanning_configuration" "basic" {
-  scan_type = "BASIC"   # BASIC = standard ECR image scan (not Inspector v2)
+resource "aws_ecr_registry_scanning_configuration" "test" {
+  scan_type = "BASIC"
 
-  # Optional: enable automatic scan on push for *all* new repos
-  scan_on_push = true
-
-  # Optional rules: you can specify filters for which repos get scanned
-  rules {
+  rule {
     scan_frequency = "SCAN_ON_PUSH"
-    repository_filters {
-      filter       = "roboshop/*"
-      filter_type  = "WILDCARD"
+    repository_filter {
+      filter      = "*"
+      filter_type = "WILDCARD"
     }
   }
 
