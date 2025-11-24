@@ -6,6 +6,7 @@ module "eks" {
   kubernetes_version = "1.32"
 
   addons = {
+    aws-ebs-csi-driver = {}
     coredns                = {}
     eks-pod-identity-agent = {
       before_compute = true
@@ -42,6 +43,13 @@ module "eks" {
       min_size     = 2
       max_size     = 10
       desired_size = 2
+      # FIX: allow ALB controller to call IMDS
+      metadata_options = {
+        http_endpoint = "enabled"
+        http_tokens   = "optional"
+      }
+
+
       iam_role_additional_policies = {
         AmazonEBS = "arn:aws:iam::aws:policy/service-role/AmazonEBSCSIDriverPolicy"
         AmazonEFS = "arn:aws:iam::aws:policy/service-role/AmazonEFSCSIDriverPolicy"
